@@ -36,10 +36,11 @@ const usd = (n: number, cents = false) =>
 
 function render(ctx: ExtensionContext, b: Balance): string {
 	const { balance_usd: bal, allowance_usd: allow, period } = b.included;
-	const pct = allow > 0 ? ((allow - bal) / allow) * 100 : 0;
+	const used = allow - bal;
+	const pct = allow > 0 ? (used / allow) * 100 : 0;
 	const tone = pct >= 90 ? "error" : pct >= 70 ? "warning" : "dim";
 
-	const parts = [`${usd(bal, true)} / ${usd(allow)}`, `已用 ${Math.round(pct)}%`];
+	const parts = [`${usd(used, true)} / ${usd(allow)}`, `已用 ${Math.round(pct)}%`];
 	const until = period?.until ? new Date(period.until) : null;
 	if (until && !Number.isNaN(until.getTime())) {
 		const days = Math.max(0, Math.floor((until.getTime() - Date.now()) / DAY_MS));

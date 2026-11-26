@@ -1,12 +1,16 @@
 {
   "name": "pi-extensions",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Personal pi extensions",
   "license": "MIT",
-  "keywords": ["pi-package"],
+  "keywords": [
+    "pi-package"
+  ],
   "pi": {
-    "extensions": ["./extensions"]
+    "extensions": [
+      "./extensions"
+    ]
   },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*"
